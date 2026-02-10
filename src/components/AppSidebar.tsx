@@ -36,6 +36,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Sheet, SheetTrigger } from "./ui/sheet";
+import AddUser from "./AddUser";
 
 const items = [
   {
@@ -176,7 +177,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    {/* add user component */}
+                    <AddUser/>
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
