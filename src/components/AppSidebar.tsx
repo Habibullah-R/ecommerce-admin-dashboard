@@ -39,6 +39,7 @@ import { Sheet, SheetTrigger } from "./ui/sheet";
 import AddUser from "./AddUser";
 import AddProduct from "./AddProduct";
 import AddCategory from "./AddCategory";
+import AddOrder from "./AddOrder";
 
 const items = [
   {
@@ -212,7 +213,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    {/* order component */}
+                    <AddOrder/>
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
