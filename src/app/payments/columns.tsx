@@ -1,7 +1,7 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,16 +10,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import Link from "next/link";
 
 export type Payment = {
   id: string;
   amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  username: string;
+  fullName: string;
+  userId: string;
   email: string;
+  status: "pending" | "processing" | "success" | "failed";
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -27,26 +29,22 @@ export const columns: ColumnDef<Payment>[] = [
     id: "select",
     header: ({ table }) => (
       <Checkbox
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         checked={
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
-        checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
+        checked={row.getIsSelected()}
       />
     ),
-    enableSorting: false,
-    enableHiding: false,
   },
   {
-    accessorKey: "username",
+    accessorKey: "fullName",
     header: "User",
   },
   {
@@ -66,20 +64,22 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    cell:({row})=>{
-        const status = row.getValue("status")
-        return (
-            <div className={
-                cn(`p-1 rounded-md w-max text-xs`,
-                    status === "pending" && "bg-yellow-500/40",
-                    status === "success" && "bg-green-500/40",
-                    status === "failed" && "bg-red-500/40",
-                    )
-            }>
-            {status as string}
-            </div>
-        )
-    }
+    cell: ({ row }) => {
+      const status = row.getValue("status");
+
+      return (
+        <div
+          className={cn(
+            `p-1 rounded-md w-max text-xs`,
+            status === "pending" && "bg-yellow-500/40",
+            status === "success" && "bg-green-500/40",
+            status === "failed" && "bg-red-500/40"
+          )}
+        >
+          {status as string}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "amount",
@@ -115,7 +115,9 @@ export const columns: ColumnDef<Payment>[] = [
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/users/${payment.userId}`}>View customer</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
