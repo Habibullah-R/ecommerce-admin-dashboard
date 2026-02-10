@@ -78,7 +78,7 @@ const AppSidebar = () => {
             <SidebarMenuButton asChild>
               <Link href="/">
                 <Image src="/logo.svg" alt="logo" width={20} height={20} />
-                <span>Lama Dev</span>
+                <span>Ecommerce</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -122,7 +122,7 @@ const AppSidebar = () => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                {/* <SidebarMenuButton asChild> */}
                   <Sheet>
                     <SheetTrigger asChild>
                       <SidebarMenuButton asChild>
@@ -134,10 +134,10 @@ const AppSidebar = () => {
                     </SheetTrigger>
                     <AddProduct/>
                   </Sheet>
-                </SidebarMenuButton>
+                {/* </SidebarMenuButton> */}
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                {/* <SidebarMenuButton asChild> */}
                   <Sheet>
                     <SheetTrigger asChild>
                       <SidebarMenuButton asChild>
@@ -149,7 +149,7 @@ const AppSidebar = () => {
                     </SheetTrigger>
                     <AddCategory/>
                   </Sheet>
-                </SidebarMenuButton>
+                {/* </SidebarMenuButton> */}
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
