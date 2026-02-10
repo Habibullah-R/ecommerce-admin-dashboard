@@ -38,6 +38,7 @@ import {
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import AddUser from "./AddUser";
 import AddProduct from "./AddProduct";
+import AddCategory from "./AddCategory";
 
 const items = [
   {
@@ -145,7 +146,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    {/* Add Category component  */}
+                    <AddCategory/>
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
